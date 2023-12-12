@@ -33,25 +33,25 @@ const balancedParens = input => {
         '[':']'
     }
 
-    // some strategy to iterate through string
+    // keep track of parens in string
     const parenStack = [];
 
     for (let char of input){
-      // see if its a paren
-      if (parenStack.length) {
-        if (validParens[parenStack[parenStack.length - 1]] === char) {
-            parenStack.pop();
-            continue;
-        }
-      }
-      if (validParens[char]) parenStack.push(char); 
-      else if (Object.values(validParens).includes(char)) return false;
+      // see if its a parens
+      if (Object.hasOwn(validParens, char)) parenStack.push(char); 
+      else if (parenStack.length) {
+        if (validParens[parenStack[parenStack.length - 1]] === char) parenStack.pop();
+      } else if (Object.values(validParens).includes(char)) return false;
     }
     
     return !parenStack.length;
 };
 
+console.log(balancedParens(' const wow = { yo: thisIsAwesome() }'));
+console.log(balancedParens(' const newton = () => { telescopes.areSicc(); '))
 console.log(balancedParens('[](){}'));
-console.log(balancedParens('[{](})'))
+console.log(balancedParens(')('));
+console.log(balancedParens('[(]{)}'));
+console.log(balancedParens('m]'));
 
 // module.exports = { balancedParens} ;
