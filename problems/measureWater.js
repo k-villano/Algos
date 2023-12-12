@@ -4,14 +4,11 @@
  */
     // want some recursive case to compare area
       // to make it efficient start at two furthest indecies
-      // when you move the right index in, only check if its larger otherwise you can skip
-      // same for incrementing the left index
+      // move either left index or right index inward, whichevers value is smaller to get linear time
 
-      var maxArea = function(height) {
+      const maxArea = function(height) {
         // outer max area variable
-        // curr area variable
         let maxWater = -Infinity;
-        let currWater;
     
         // recusive function should move inwards
         const measureBuckets = (i, j) => {
@@ -19,10 +16,7 @@
             if (i === j) return;
         
             // do actual measuring
-            let width = j - i;
-            let currHeight = Math.min(height[i], height[j])
-            currWater = currHeight * width;
-            maxWater = Math.max(currWater, maxWater);
+            maxWater = Math.max((Math.min(height[i], height[j]) * (j - i)), maxWater);
      
             // height[j] is smaller get next j index worth checking
             if (height[j] < height[i]){
