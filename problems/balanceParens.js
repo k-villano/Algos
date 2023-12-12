@@ -26,32 +26,29 @@
 
 const balancedParens = input => {
     // object to store pairs
-    // probably a stack to know what we are looking for
     const validParens = {
         '(':')',
         '{':'}',
         '[':']'
     }
 
-    // keep track of parens in string
+    // make a stack to keep track of opening parens
     const parenStack = [];
 
     for (let char of input){
-      // see if its a parens
+      // see if its a parens or valid mathing parens
       if (Object.hasOwn(validParens, char)) parenStack.push(char); 
       else if (parenStack.length) {
         if (validParens[parenStack[parenStack.length - 1]] === char) parenStack.pop();
-      } else if (Object.values(validParens).includes(char)) return false;
+      } else if (char === ']' || char === '}' || char === ')') return false;
     }
     
     return !parenStack.length;
 };
 
-console.log(balancedParens(' const wow = { yo: thisIsAwesome() }'));
-console.log(balancedParens(' const newton = () => { telescopes.areSicc(); '))
-console.log(balancedParens('[](){}'));
-console.log(balancedParens(')('));
-console.log(balancedParens('[(]{)}'));
-console.log(balancedParens('m]'));
-
-// module.exports = { balancedParens} ;
+// console.log(balancedParens(' const wow = { yo: thisIsAwesome() }'));
+// console.log(balancedParens(' const newton = () => { telescopes.areSicc(); '))
+// console.log(balancedParens('[](){}'));
+// console.log(balancedParens(')('));
+// console.log(balancedParens('[(]{)}'));
+// console.log(balancedParens('[[(m)]]'));
