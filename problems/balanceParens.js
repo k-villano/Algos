@@ -35,12 +35,11 @@ const balancedParens = input => {
     // make a stack to keep track of opening parens
     const parenStack = [];
 
+    // see if its a parens or valid matching parens
     for (let char of input){
-      // see if its a parens or valid mathing parens
       if (Object.hasOwn(validParens, char)) parenStack.push(char); 
-      else if (parenStack.length) {
-        if (validParens[parenStack[parenStack.length - 1]] === char) parenStack.pop();
-      } else if (char === ']' || char === '}' || char === ')') return false;
+      else if (parenStack.length && validParens[parenStack[parenStack.length - 1]] === char) parenStack.pop();
+      else if (char === ']' || char === '}' || char === ')') return false;
     }
     
     return !parenStack.length;
