@@ -8,7 +8,7 @@ var exist = function(board, word) {
     const visited = new Set();
     let found = false;
   
-    // make a search withing the board for the right letter
+    // make a search within the board for the right letter
     const search = (i, j, letter) => {
         // base case
         if (letter === word.length) {
@@ -59,5 +59,5 @@ var exist = function(board, word) {
     }
   
       
-      return found;
+    return found;
   };
