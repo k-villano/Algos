@@ -19,11 +19,10 @@ WordDictionary.prototype.addWord = function(word) {
 WordDictionary.prototype.search = function(word) {
     // efficient search when there are no dots
     if (this.words.has(word)) return true;
-    let flag = true
+ 
     if (word.includes('.')){
         // look for matches again
         for (const str of this.words){
-            console.log(str)
             if (str.length === word.length){
                 for (let i = 0; i < str.length; i++){
                     if (str[i] !== word[i] && word[i] !== '.') {
