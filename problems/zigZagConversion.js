@@ -4,7 +4,7 @@
  * @return {string}
  */
 const convert = (s, numRows) => {
-    if (s.length <= numRows) return s;
+    if (s.length <= numRows || numRows === 1) return s;
     // at first its numRows - 1 * 2 its a corner 
     // then numRows - 2 * 2 and 1 * 2
     // then numRows - 3 * 2 and 2 * 2
@@ -17,9 +17,10 @@ const convert = (s, numRows) => {
     
     // s.length / numRows * 2 - 2 to ceiling
     // 14 / 6 ---> 3
-    const recurse = (i) => {
+    // const recurse = (i) => {
 
-        if (i === numRows) return;
+    for (let i = 0; i < numRows; i++){
+        // if (i === numRows) return;
         let j = i;
 
         while(j < s.length){
@@ -38,11 +39,11 @@ const convert = (s, numRows) => {
                 } 
             }
         }
-        recurse(i + 1)
+        // recurse(i + 1)
     }
 
-    recurse(0);
+    // recurse(0);
     return result;
 };
 
-console.log(convert("PAYPALISHIRING", 2))
+console.log(convert("PAYPALISHIRING", 4))
