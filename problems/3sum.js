@@ -52,3 +52,13 @@ const threeSum = (nums) => {
 // console.log([1, 0, -1, 2, 5, 7, 9, 20, -5].sort((a, b) => a - b));
 
 // console.log([1, 0, -1, -2].sort((a, b) => a - b));
+
+const a = new Set();
+
+a.add(4)
+a.add(5)
+a.add(6);
+console.log(a)
+
+const b = new Array(...a);
+console.log([...a])
