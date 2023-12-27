@@ -9,7 +9,6 @@ const threeSum = (nums) => {
     if (nums.length < 3) return results;
     //maybe sort first 
     nums.sort((a, b) => a - b);
-    console.log(nums);
     let i = 0;
     let j = i + 1;
     let k = j + 1;
@@ -24,28 +23,22 @@ const threeSum = (nums) => {
         // if i = array length - 2 then just return results
     while (i < nums.length - 2){
         if (j === nums.length - 1){
-            console.log('here');
             i++;
             j = i + 1;
             k = j + 1;
         } else if (k === nums.length) {
-            console.log('here');
             j++;
             k = j + 1;
         } else if ((nums[i] + nums[j] + nums[k]) === 0) {
-            console.log('here');
             results.push([nums[i], nums[j], nums[k]]);
-            // in crement corresponding 
+            // increment 
             k++
         } else if ((nums[i] + nums[j] + nums[k]) > 0 && j === i + 1 && k === j + 1) {
-            console.log('broken');
             break;
         } else if ((nums[i] + nums[j] + nums[k]) > 0 && j < k - 1){
-            console.log('here');
             j++;
             k = j + 1;
         } else if ((nums[i] + nums[j] + nums[k]) > 0 && i < j - 1){
-            console.log('here');
             i++;
             j = i + 1;
             k = j + 1;
@@ -54,7 +47,7 @@ const threeSum = (nums) => {
     return results
 };
 
-console.log(threeSum([1, 0, -1, 2, 5, -7, 9, 20, -5]));
+// console.log(threeSum([1, 0, -1, 2, 5, -7, 9, 20, -5, -20, -3]));
 
 // console.log([1, 0, -1, 2, 5, 7, 9, 20, -5].sort((a, b) => a - b));
 
