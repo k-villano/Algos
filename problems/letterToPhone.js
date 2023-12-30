@@ -17,15 +17,13 @@ const letterCombinations = (digits) => {
         9 : 'wxyz'
     }
     // length of final array is length of the value string times each other
-    const nums = digits.split('');
-    let resultLength = 1;
+    let resultLength = digits.length ? 1 : 0;
 
     for (const num of digits){
         resultLength *= conversion[num].length;
     }
 
     const result = new Array(resultLength).fill('');
-    console.log(resultLength)
 
     for (let i = 0; i < digits.length; i++){
         let currStr = conversion[digits[i]]
@@ -42,18 +40,12 @@ const letterCombinations = (digits) => {
             resultInd += i === 0 ? 1 : i * 3
         }
     }   
-
-    console.log(result);
-
     // two options insert the correct number of first characters first then  go onto next,
     // or complete each result string first then move on
 
     // aproach a situation of just nested loops
 
-
-    
+    return result; 
 };
 
-letterCombinations('27')
-
-console.log(!!'')
+letterCombinations('')
