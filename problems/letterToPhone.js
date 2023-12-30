@@ -3,6 +3,7 @@
  * @return {string[]}
  */
 const letterCombinations = (digits) => {
+    if (!digits.length) return [];
     // for each digit go through combinations
     // result array
     // large object with conversions where you can iterate through it
@@ -16,36 +17,23 @@ const letterCombinations = (digits) => {
         8 : 'tuv',
         9 : 'wxyz'
     }
+
     // length of final array is length of the value string times each other
-    let resultLength = digits.length ? 1 : 0;
+    // some recusive case with a memo, when the memo is the length of the digits push it into the result arr
+    // base case for the index is at length for a given conversion
+    const results = [];
+    // still doesnt account for duplicates
+    // posibly iterate first to deal with that
+    const recurse = (i, memo = '') => {
+        if (memo.length === digits.length) return results.push(memo);
 
-    for (const num of digits){
-        resultLength *= conversion[num].length;
-    }
-
-    const result = new Array(resultLength).fill('');
-
-    for (let i = 0; i < digits.length; i++){
-        let currStr = conversion[digits[i]]
-        console.log(currStr)
-        let resultInd = 0;
-        
-        for (let j = 0; j < resultLength; j++){
-            if (resultInd > resultLength - 1) resultInd -= resultLength - 1
-            console.log(resultInd)
-            let charToAdd = Math.floor((resultInd / (resultLength / currStr.length)))
-            if (charToAdd > currStr.length - 1) charToAdd = 0
-            console.log(charToAdd);
-            result[j] += currStr[charToAdd]
-            resultInd += i === 0 ? 1 : i * 3
+        for (let char of conversion[digits[i]]){
+            recurse(i + 1, memo + char)
         }
-    }   
-    // two options insert the correct number of first characters first then  go onto next,
-    // or complete each result string first then move on
 
-    // aproach a situation of just nested loops
-
-    return result; 
+    }
+    recurse(0);
+    return results; 
 };
 
-letterCombinations('')
+// console.log(letterCombinations('234'))
