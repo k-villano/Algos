@@ -62,3 +62,4 @@ console.log(a)
 
 const b = new Array(...a);
 console.log([...a])
+
