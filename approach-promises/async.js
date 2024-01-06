@@ -26,7 +26,7 @@ const events = [
     });
   };
   
-  // solveIncorrectly(events);
+//   solveIncorrectly(events);
   
   
   
@@ -59,7 +59,7 @@ const events = [
     timeoutEvent(0);
   }
   
-  // solveUsingSetTimeout(events);
+//   solveUsingSetTimeout(events);
   
   
   
@@ -73,9 +73,10 @@ const events = [
   
   const promiseToExecuteEvent = (event) => {
     return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log(event.label);
-        resolve();
+        
+        setTimeout(() => {
+            console.log(event.label);
+            resolve();
       }, event.delay);
     });
   }
