@@ -72,3 +72,5 @@ var canCompleteCircuit2 = function(gas, cost) {
     if(totalGas < 0) return -1
     else return startingPos
 }
+
+// makin changedssssss
